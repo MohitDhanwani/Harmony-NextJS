@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//storing user details in database
+model UserDetails {
+  id              Int       @id @default(autoincrement())
+  userName        String
+  userEmail       String
+  roomCreated     RoomDetails[]
+  videoPosted     videoDetails[]
+  upvotes       upvote[]
+}
+
+//storing rooms details and who created them!
+model RoomDetails {
+  roomID        Int           @id @default(autoincrement())
+  roomName      String
+  roomPassword  String
+  roomGenre     String
+  userID        Int           @default(autoincrement())
+  createdBy     UserDetails   @relation(fields: [userID] , references: [id])
+}
+
+//storing video details
+model videoDetails {
+  videoid           Int          @id @default(autoincrement())
+  videoName         String
+  videoURL          String
+  videoIdUser       Int          @default(autoincrement())
+  videoCreatedInsideRoom  Int
+  videoCreator      UserDetails  @relation(fields: [videoIdUser] , references: [id])
+  upvotes           upvote[]
+}
+
+model upvote {
+  id          Int       @id @default(autoincrement())
+  videoId     Int
+  userId      Int
+  upVoteDate  DateTime    @default(now())
+  video       videoDetails    @relation(fields: [videoId] , references: [videoid])
+  user        UserDetails     @relation(fields: [userId] , references: [id])
+
+  @@unique([videoId, userId])
+}
