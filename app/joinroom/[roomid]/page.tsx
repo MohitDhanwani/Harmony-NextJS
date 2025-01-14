@@ -120,8 +120,6 @@ useEffect(() => {
       return;
     }
 
-    const videoToPublish = await uploadVideoDetailsToDB.json();
-
     setVideo((prevVideos) => [
       ...prevVideos,
       { videoName: info.videoTitle, videoURL: url, videoCreatedInsideRoom: String(params.roomid), videoid: info.videoId }
@@ -179,12 +177,8 @@ useEffect(() => {
         <h1 className="text-white font-bold text-lg">
           <span className="text-purple-500">Important:</span> Please ensure the video URL is in the format:
         </h1>
-        <p className="text-blue-400 font-medium mt-2 mb-4">
-          (http/https www.youtube.com/watch?v=abcdef)
-        </p>
-        <h2 className="text-gray-400 text-md mb-6">
-          After pressing "GO", please wait 10-15 seconds for the video to be added to the queue.
-        </h2>
+        <p className="text-blue-400 font-medium mt-2 mb-4">watch?v=abcdef</p>
+        <h2 className="text-gray-400 text-md mb-6">After pressing GO, please wait 10-15 seconds for the video to be added to the queue.</h2>
       </div>
 
       <div className='flex flex-row justify-around'>
