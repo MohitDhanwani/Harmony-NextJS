@@ -53,7 +53,7 @@ function page() {
 
     list();
 
-    const intervalId = setInterval(list, 2000);
+    const intervalId = setInterval(list, 10000);
     return () => clearInterval(intervalId);
 
 }, [params.roomid]);
@@ -179,6 +179,18 @@ useEffect(() => {
           onClick={HandleDeleteRoom}>Delete Room</button>
       ) : ("")}
 
+      <div className='flex flex-col items-center pt-4 pb-4 text-center'>
+        <h1 className="text-white font-bold text-lg">
+          <span className="text-purple-500">Important:</span> Please ensure the video URL is in the format:
+        </h1>
+        <p className="text-blue-400 font-medium mt-2 mb-4">
+          https://www.youtube.com/watch?v=abcdef
+        </p>
+        <h2 className="text-gray-400 text-md mb-6">
+          After pressing "GO", please wait 10-15 seconds for the video to be added to the queue.
+        </h2>
+      </div>
+
       <div className='flex flex-row justify-around'>
 
         <div className='pt-10'>
@@ -203,7 +215,6 @@ useEffect(() => {
         </div>
 
         <div className='text-white pt-10 w-full max-w-[550px] bg-gray-700 mt-10 rounded-xl p-4 overflow-y-auto max-h-[480px]'>
-
           <h1 className='text-lg font-bold mb-4 border-b-2 border-gray-600 pb-2'>Video List</h1>
           {videos.length > 0 ? (
             videos.map((v, index) => (
@@ -217,7 +228,6 @@ useEffect(() => {
           ) : (
             <p className='text-center text-gray-400'>No videos available</p>
           )}
-
         </div>
 
       </div>

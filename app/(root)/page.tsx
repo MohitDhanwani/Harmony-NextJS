@@ -40,7 +40,7 @@ export default function Home() {
       <div className="mt-40">
         <h1 className="text-4xl font-semibold text-purple-500">Vote & Vibe Together!</h1>
         
-        <div className="text-2xl font-semibold text-white mt-4">Create rooms, vote for songs, and enjoy music with friends in real-time. <br />
+        <div className="text-2xl font-semibold text-white mt-4">Create rooms, and enjoy music with friends in real-time. <br />
         The ultimate platform for collaborative music listening.</div>
 
         <div className="mt-6">
