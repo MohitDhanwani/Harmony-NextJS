@@ -5,7 +5,7 @@ import YouTube from "react-youtube"
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-function page() {
+function Page() {
 
   const session = useSession();
   const params = useParams();
@@ -14,11 +14,9 @@ function page() {
 
   const [url, setUrl] = useState<string>("");
   const [addToQueueStatus , setAddToQueueStatus] = useState(false);
-  const [data, setData] = useState<string>('');
   const [videos, setVideo] = useState<videoDetails[]>([]);
   const [videoID, setVideoID] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [userID, setUserID] = useState(null);
 
   interface videoDetails {
     videoName: string,
@@ -83,7 +81,6 @@ useEffect(() => {
     }
 
     const data = await response.json();
-    setData(data);
 
     if (!data) {
       alert("Please enter a valid YouTube URL");
@@ -124,7 +121,6 @@ useEffect(() => {
     }
 
     const videoToPublish = await uploadVideoDetailsToDB.json();
-    setUserID(videoToPublish.userID);
 
     setVideo((prevVideos) => [
       ...prevVideos,
@@ -144,7 +140,7 @@ useEffect(() => {
     }
   };
 
-  const onEnd = (event: any) => {
+  const onEnd = () => {
     if (currentIndex < videoID.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
@@ -184,7 +180,7 @@ useEffect(() => {
           <span className="text-purple-500">Important:</span> Please ensure the video URL is in the format:
         </h1>
         <p className="text-blue-400 font-medium mt-2 mb-4">
-          https://www.youtube.com/watch?v=abcdef
+          (http/https www.youtube.com/watch?v=abcdef)
         </p>
         <h2 className="text-gray-400 text-md mb-6">
           After pressing "GO", please wait 10-15 seconds for the video to be added to the queue.
@@ -235,4 +231,4 @@ useEffect(() => {
   )
 }
 
-export default page;
+export default Page;

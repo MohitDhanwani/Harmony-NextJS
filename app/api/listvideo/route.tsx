@@ -16,8 +16,8 @@ export async function POST(req: NextRequest){
 
     return NextResponse.json({error: "Enter valid youtube url"});
 
-    } catch (error: any) {
-        console.error("error from server" , error.message);
+    } catch (error) {
+        console.error("error from server" , error);
         return NextResponse.json({error: "Internal server Error"} , {status: 500});
     }
 }

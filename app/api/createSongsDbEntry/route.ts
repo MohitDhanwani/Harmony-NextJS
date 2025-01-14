@@ -31,8 +31,8 @@ export async function POST(req: NextRequest) {
         }) 
         return NextResponse.json({videoDbEntry: videoDbEntry, userID: getUserID});
 
-    } catch (error : any) {
-        console.error("some error in pushing data to db" , error.message);
+    } catch (error) {
+        console.error("some error in pushing data to db" , error);
         return NextResponse.json({error: "Inernal Server Error"});
     }
 

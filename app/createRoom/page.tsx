@@ -2,14 +2,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-function page() {
+function Page() {
 
   const router = useRouter();
 
     const [roomName , setRoomName] = useState('');
     const [roomPassword , setRoomPassword] = useState('');
     const [roomGenre , setRoomGenre] = useState('');
-    const [roomOwner , setRoomOwner] = useState(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -42,8 +41,8 @@ function page() {
 
         router.push(`/joinroom/${data.newRoomDbEntry.roomID}`)
         
-      } catch (error: any) {
-        console.error("Error creating room:", error.message);
+      } catch (error) {
+        console.error("Error creating room:", error);
       }
     };
     
@@ -117,4 +116,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

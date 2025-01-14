@@ -10,7 +10,7 @@ export default function Home() {
   const handleCreateRoomFunction = async () => {
 
     if(!session.data?.user){
-      await alert("please sign in before creating room , redirecting you to sign in page shortly!");
+      alert("please sign in before creating room , redirecting you to sign in page shortly!");
       signIn('google');
       return;
     }

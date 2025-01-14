@@ -1,5 +1,5 @@
 'use client'
-import {Music2Icon, Router} from "lucide-react"
+import {Music2Icon} from "lucide-react"
 import { signIn, useSession , signOut } from 'next-auth/react'
 
 export default function Navbar() {

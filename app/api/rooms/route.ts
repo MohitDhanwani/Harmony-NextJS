@@ -41,8 +41,8 @@ export async function POST(req: NextRequest){
 
     return NextResponse.json({newRoomDbEntry , roomOwnerEmail} , {status: 201});
 
-    } catch (error: any) {
-        console.error("error creating room - " , error.message);
-        return NextResponse.json({error: "Internal Server Error" , details: error.message} , {status: 500});
+    } catch (error) {
+        console.error("error creating room - " , error);
+        return NextResponse.json({error: "Internal Server Error" , details: error} , {status: 500});
     }
 }

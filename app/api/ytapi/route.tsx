@@ -13,8 +13,8 @@ export async function POST(req: NextRequest) {
         const jsonresponse = await urlResponse.json();
         return NextResponse.json({videoTitle : jsonresponse.items[0].snippet.title , videoBy : jsonresponse.items[0].snippet.channelTitle} , {status: 200});
 
-    } catch (error: any) {
-        console.error("some error ", error.message);
+    } catch (error) {
+        console.error("some error ", error);
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 }
