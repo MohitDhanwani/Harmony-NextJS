@@ -19,7 +19,7 @@ function Page() {
     useEffect(() => {
         const fetchRooms = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/getallrooms', {
+                const response = await fetch('/api/getallrooms', {
                     method: 'GET',
                 });
 

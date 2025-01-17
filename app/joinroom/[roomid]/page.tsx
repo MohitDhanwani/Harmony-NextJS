@@ -30,7 +30,7 @@ function Page() {
   useEffect(() => {
     const list = async () => {
       try {
-        const listVideos = await fetch("http://localhost:3000/api/getAllVideos", {
+        const listVideos = await fetch("/api/getAllVideos", {
           method: "GET",
         });
         const res: videoDetails[] = await listVideos.json();
@@ -65,7 +65,7 @@ useEffect(() => {
   const AddUrlToQueue = async () => {
     setAddToQueueStatus(true);
 
-    const response = await fetch('http://localhost:3000/api/listvideo', {
+    const response = await fetch('/api/listvideo', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ useEffect(() => {
       return;
     }
 
-    const ytVideoDetailsResponse = await fetch("http://localhost:3000/api/ytapi", {
+    const ytVideoDetailsResponse = await fetch("/api/ytapi", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ useEffect(() => {
 
     const info = await ytVideoDetailsResponse.json();
 
-    const uploadVideoDetailsToDB = await fetch("http://localhost:3000/api/createSongsDbEntry", {
+    const uploadVideoDetailsToDB = await fetch("/api/createSongsDbEntry", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ useEffect(() => {
   };
 
   const HandleDeleteRoom = async () => {
-    const deleteApiReq = await fetch("http://localhost:3000/api/deleteroom", {
+    const deleteApiReq = await fetch("/api/deleteroom", {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',

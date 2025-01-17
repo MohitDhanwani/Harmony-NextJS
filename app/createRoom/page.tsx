@@ -14,7 +14,7 @@ function Page() {
       e.preventDefault();
     
       try {
-        const response = await fetch("http://localhost:3000/api/rooms", {
+        const response = await fetch("/api/rooms", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
