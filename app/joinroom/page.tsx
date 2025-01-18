@@ -48,51 +48,40 @@ function Page() {
     }
 
     return (
-        <div className="bg-[#0a0a0a] h-screen">
-
-            <div className="h-16 pt-20 flex w-full justify-center">
-                <input type="text" placeholder="Search room name..." className="p-5 bg-gray-700 text-white rounded-2xl w-5/12" />
+        <div className="bg-[#0a0a0a] min-h-screen flex flex-col items-center px-4 py-6">
+            <div className="w-full max-w-3xl">
+                <input type="text" placeholder="Search room name..." className="w-full p-4 bg-gray-700 text-white rounded-lg outline-none focus:ring-2 focus:ring-purple-500" />
             </div>
 
-            <div className="mt-32">
+            <div className="mt-10 w-full max-w-4xl">
                 {rooms.length > 0 ? (
-
-                    <div className="flex justify-center items-center w-full">
-
-                        <div className="overflow-y-scroll no-scrollbar max-h-[400px]">
-                            <table className="w-[650px]">
-                                <thead className="text-white">
-                                    <tr>
-                                        <th className="p-2">RoomNo</th>
-                                        <th className="p-2">Room Name</th>
-                                        <th className="p-2">Room Genre</th>
-                                        <th className="p-2">Action</th>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm text-left text-gray-400">
+                            <thead className="text-xs uppercase bg-gray-800 text-gray-400">
+                                <tr>
+                                    <th scope="col" className="p-4">Room No</th>
+                                    <th scope="col" className="p-4">Room Name</th>
+                                    <th scope="col" className="p-4">Room Genre</th>
+                                    <th scope="col" className="p-4 text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rooms.map((roomInfo) => (
+                                    <tr key={roomInfo.roomID} className="bg-gray-900 border-b border-gray-700">
+                                        <td className="p-4 text-purple-400 font-semibold">{roomInfo.roomID}</td>
+                                        <td className="p-4 text-purple-400 font-semibold">{roomInfo.roomName}</td>
+                                        <td className="p-4 text-purple-400 font-semibold">{roomInfo.roomGenre}</td>
+                                        <td className="p-4 text-center">
+                                            <button className="py-2 px-4 rounded-lg bg-green-500 text-white font-medium hover:bg-green-600 transition duration-300"
+                                            onClick={() => JoinByRedirecting(roomInfo.roomID)}>Join now</button>
+                                        </td>
                                     </tr>
-                                </thead>
-
-                                <tbody>
-
-                                    {rooms.map((roomInfo, index) => (
-
-                                        <tr key={index} className="text-center">
-                                            <td className="p-4 text-purple-400 border-b-2 font-semibold">{roomInfo.roomID}</td>
-                                            <td className="p-4 text-purple-400 border-b-2 font-semibold">{roomInfo.roomName}</td>
-                                            <td className="p-4 text-purple-400 border-b-2 font-semibold">{roomInfo.roomGenre}</td>
-                                            <td className="p-4 border-b-2">
-                                                <button className="p-2 px-4 rounded-2xl bg-green-500 font-semibold hover:bg-purple-400 transition duration-300"
-                                                onClick={() => JoinByRedirecting(roomInfo.roomID)}>Join now</button>
-                                            </td>
-                                        </tr>
-                                    ))}
-
-                                </tbody>
-
-                            </table>
-                        </div>
-
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 ) : (
-                    <p className="text-white text-center mt-10">No rooms available || Fetching rooms....</p>
+                    <p className="text-white text-center">No rooms available || Fetching rooms...</p>
                 )}
             </div>
         </div>
